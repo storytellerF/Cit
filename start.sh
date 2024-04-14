@@ -51,7 +51,7 @@ process_directory() {
           print_log red "Cannot fast-forward in $current_dir"
         else
           print_log green "Fast-forwarding in $current_dir"
-          git pull --rebase
+          git pull --rebase &>/dev/null
         fi
       else
         if has_changes; then
