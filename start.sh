@@ -32,6 +32,9 @@ print_log() {
   purple)
     printf "\033[0;35m%s\033[0m\n" "$message"
     ;;
+  pink)
+    printf "\033[0;36m%s\033[0m\n" "$message"
+    ;;
   *)
     printf "%s\n" "$message"
     ;;
@@ -44,7 +47,7 @@ process_directory() {
   if is_git_repo; then
     print_log black "Processing directory: $current_dir (Git Repository)"
     if has_remote; then
-      print_log black "Fetching changes in $current_dir..."
+      print_log pink "Fetching changes in $current_dir..."
       git fetch &>/dev/null
       if git status -uno | grep -q 'Your branch is behind'; then
         if has_changes; then
@@ -63,7 +66,7 @@ process_directory() {
     fi
     return 0
   else
-    print_log black "Processing directory: $current_dir"
+    # print_log black "Processing directory: $current_dir"
     return 1
   fi
 }
